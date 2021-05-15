@@ -1,0 +1,50 @@
+@mixin link($unit: 4px) {
+  display: block;
+
+  font-size: $unit * 2.5;
+  line-height: $unit * 2.5;
+  text-decoration: none;
+  color: $color-blue;
+
+  &:hover,
+  &:focus {
+    color: $color-blue-dark;
+  }
+
+  &_back {
+    position: relative;
+
+    padding-left: $unit * 3;
+
+    .link__icon {
+      left: 0;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+
+    width: $unit * 1.5;
+    height: $unit * 3;
+
+    fill: currentColor;
+    transform: translateY(-60%);
+  }
+}
+
+.link {
+  @include link(4px);
+
+  @media (min-height: $height-breakpoint-1) {
+    @include link(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include link(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include link(7px);
+  }
+}

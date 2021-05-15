@@ -1,0 +1,80 @@
+@mixin enter-radio-geometry ($unit: 4px) {
+  font-size: $unit * 2.5;
+  line-height: $unit * 2.5;
+
+
+  &__label {
+    row-gap: $unit * 2;
+  }
+
+  &__icon {
+    width: $unit * 14;
+    height: $unit * 15;
+  }
+}
+
+.enter-radio {
+  @include enter-radio-geometry(4px);
+
+  color: rgba(#000000, 0.6);
+
+  &__input {
+    @include visually-hidden();
+
+    &:focus {
+      + .enter-radio__label {
+        color: rgba(#000000, 0.8);
+      }
+    }
+
+    &:checked {
+      + .enter-radio__label {
+        color: #4CA6FF;
+
+        &:hover {
+          color: $color-blue;
+
+          .enter-radio__name {
+            color: rgba(#000000, 0.8);
+          }
+        }
+
+        .enter-radio__name {
+          color: rgba(#000000, 0.6);
+        }
+      }
+
+      &:focus {
+        + .enter-radio__label {
+          color: $color-blue;
+
+          .enter-radio__name {
+            color: rgba(#000000, 0.8);
+          }
+        }
+      }
+    }
+  }
+
+  &__label {
+    display: grid;
+
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(#000000, 0.8);
+    }
+  }
+
+  @media (min-height: $height-breakpoint-1) {
+    @include enter-radio-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include enter-radio-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include enter-radio-geometry(7px);
+  }
+}

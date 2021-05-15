@@ -1,0 +1,73 @@
+@mixin keyboard-select-dialog-geometry($unit: 4px) {
+  @include dialog-geometry($unit);
+
+  font-weight: 500;
+
+  &__options {
+    display: grid;
+    row-gap: $unit * 4;
+  }
+
+  &__option {
+    margin: 0;
+    border: none;
+    padding: 0;
+
+    &_hidden {
+      display: none;
+    }
+
+    &_enter,
+    &_layout {
+      .keyboard-select-dialog__option-variants {
+        padding-bottom: $unit * 4;
+      }
+    }
+
+    &_enter {
+      .keyboard-select-dialog__option-variants {
+        grid-template-columns: repeat(2, auto);
+        justify-content: start;
+
+        padding-left: $unit * 4;
+      }
+    }
+  }
+
+  &__option-name {
+    margin-bottom: $unit * 4;
+
+    font-size: $unit * 3.5;
+    line-height: $unit * 3.5;
+    color: rgba(#000000, 0.6);
+  }
+
+  &__option-variants {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: $unit * 4;
+
+    margin: 0;
+    border-bottom: 1px solid #DCDCDC;
+    padding: 0;
+
+    list-style: none;
+  }
+}
+
+.keyboard-select-dialog {
+  @include keyboard-select-dialog-geometry(4px);
+  @include dialog("../img/instruments.png");
+
+  @media (min-height: $height-breakpoint-1) {
+    @include keyboard-select-dialog-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include keyboard-select-dialog-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include keyboard-select-dialog-geometry(7px);
+  }
+}

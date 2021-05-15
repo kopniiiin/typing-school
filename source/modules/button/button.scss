@@ -1,0 +1,122 @@
+@mixin button($unit: 4px) {
+  display: block;
+  border: 1px solid $color-blue-dark;
+  border-radius: $unit * 1.5;
+  padding-top: $unit * 2.5;
+  padding-right: $unit * 2;
+  padding-bottom: $unit * 2;
+  padding-left: $unit * 2;
+
+  font-family: inherit;
+  font-size: $unit * 2.5;
+  font-weight: 500;
+  line-height: $unit * 2.5;
+  text-decoration: none;
+  color: $color-white;
+
+  background-image: $gradient-blue;
+  background-origin: border-box;
+  box-shadow: 0 $unit * 0.6 $unit rgba(#000000, 0.1);
+  outline: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    &:not(:disabled) {
+      background-image: $gradient-blue-dark;
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+
+    box-shadow: none;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: auto;
+  }
+
+  &_big {
+    padding-top: $unit * 3;
+    padding-bottom: $unit * 3;
+  }
+
+  &_stroke {
+    color: $color-blue;
+
+    border-color: $color-gray;
+
+    background-image: none;
+
+    &:hover,
+    &:focus {
+      &:not(:disabled) {
+        color: $color-blue-dark;
+
+        border-color: $color-gray-dark;
+
+        background-image: none;
+      }
+    }
+  }
+
+  &_icon-text {
+    position: relative;
+
+    padding-left: $unit * 5.5;
+
+    .button__icon {
+      left: $unit * 1.5;
+
+      width: $unit * 3;
+      height: $unit * 3;
+
+      transform: translateY(-50%);
+    }
+  }
+
+  &_icon {
+    position: relative;
+
+    min-width: $unit * 10;
+    min-height: $unit * 7;
+
+    .button__text {
+      @include visually-hidden();
+    }
+
+    .button__icon {
+      left: 50%;
+
+      width: $unit * 4;
+      height: $unit * 4;
+
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+
+    fill: currentColor;
+  }
+}
+
+.button {
+  @include button(4px);
+
+  @media (min-height: $height-breakpoint-1) {
+    @include button(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include button(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include button(7px);
+  }
+}

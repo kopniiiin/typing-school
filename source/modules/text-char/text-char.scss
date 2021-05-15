@@ -1,0 +1,62 @@
+@mixin text-char-geometry($unit: 4px) {
+  width: $unit * 3;
+  height: $unit * 6;
+
+  font-size: $unit * 4.5;
+  line-height: $unit * 6;
+
+  &_cursor {
+    &::before {
+      bottom: $unit * -3.5;
+    }
+  }
+}
+
+.text-char {
+  @include text-char-geometry(4px);
+
+  position: relative;
+
+  font-family: "Roboto Mono", "Arial", sans-serif;
+  font-weight: 400;
+  text-align: center;
+
+  &_cursor {
+    &::before {
+      content: "";
+
+      position: absolute;
+      left: 0;
+
+      width: 100%;
+      height: 3px;
+      border-radius: 3px;
+
+      background-color: $color-blue;
+    }
+  }
+
+  &_correct {
+    color: #96C691;
+
+    background-color: #ECF7E7;
+  }
+
+  &_typo {
+    color: $color-red;
+
+    background-color: #FFC3CA;
+  }
+
+  @media (min-height: $height-breakpoint-1) {
+    @include text-char-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include text-char-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include text-char-geometry(7px);
+  }
+}

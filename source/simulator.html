@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Typing School - тренажер слепой печати</title>
+  <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+  <main class="simulator">
+    <h1 class="simulator__title">Тренажер слепой печати</h1>
+
+    <div class="simulator__top-bar">
+      <div class="simulator__bar-container">
+        <div class="simulator__links"></div>
+        <div class="simulator__meters simulator__meters_hidden">
+          <div class="speedometer simulator__meter" id="speedometer">
+            <svg class="speedometer__icon" width="17" height="12">
+              <use xlink:href="img/icons.svg#icon-speedometer"></use>
+            </svg>
+            <span class="speedometer__indicator">0</span>
+            <span class="speedometer__unit">зн/мин</span>
+          </div>
+          <div class="accuracy-meter simulator__meter" id="accuracy-meter">
+            <svg class="accuracy-meter__icon" width="17" height="17">
+              <use xlink:href="img/icons.svg#icon-accuracy-meter"></use>
+            </svg>
+            <span class="accuracy-meter__indicator">0%</span>
+            <span class="accuracy-meter__unit">точности</span>
+          </div>
+        </div>
+        <div class="simulator__buttons">
+          <button class="button button_icon simulator__pause-button" type="button" aria-label="Пауза">
+            <svg class="button__icon" width="26" height="26">
+              <use xlink:href="img/icons.svg#icon-pause"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="simulator__char-container"></div>
+
+    <div class="simulator__hint-container">
+      <div class="hint-line hint-line_hidden"></div>
+    </div>
+
+    <!-- Клавиатура -->
+    <div class="keyboard simulator__keyboard">
+      <div class="keyboard__keys">
+        <div class="keyboard__replaceable-keys">
+          <div class="keyboard__row">
+            <div class="keyboard__key" data-char="ё" data-shift-char="Ё" data-left-hand-position="2">
+              <div class="keyboard__key-text">Ё</div>
+            </div>
+            <div class="keyboard__key" data-char="1" data-shift-char="!" data-left-hand-position="3">
+              <div class="keyboard__key-text">!</div>
+              <div class="keyboard__key-text">1</div>
+            </div>
+            <div class="keyboard__key" data-char="2" data-shift-char='"' data-left-hand-position="4">
+              <div class="keyboard__key-text">"</div>
+              <div class="keyboard__key-text">2</div>
+            </div>
+            <div class="keyboard__key" data-char="3" data-shift-char="№" data-left-hand-position="5">
+              <div class="keyboard__key-text">№</div>
+              <div class="keyboard__key-text">3</div>
+            </div>
+            <div class="keyboard__key" data-char="4" data-shift-char=";" data-left-hand-position="6">
+              <div class="keyboard__key-text">;</div>
+              <div class="keyboard__key-text">4</div>
+            </div>
+            <div class="keyboard__key" data-char="5" data-shift-char="%" data-left-hand-position="7">
+              <div class="keyboard__key-text">%</div>
+              <div class="keyboard__key-text">5</div>
+            </div>
+            <div class="keyboard__key" data-char="6" data-shift-char=":" data-left-hand-position="8">
+              <div class="keyboard__key-text">:</div>
+              <div class="keyboard__key-text">6</div>
+            </div>
+            <div class="keyboard__key" data-char="7" data-shift-char="?" data-right-hand-position="8">
+              <div class="keyboard__key-text">?</div>
+              <div class="keyboard__key-text">7</div>
+            </div>
+            <div class="keyboard__key" data-char="8" data-shift-char="*" data-right-hand-position="7">
+              <div class="keyboard__key-text">*</div>
+              <div class="keyboard__key-text">8</div>
+            </div>
+            <div class="keyboard__key" data-char="9" data-shift-char="(" data-right-hand-position="6">
+              <div class="keyboard__key-text">(</div>
+              <div class="keyboard__key-text">9</div>
+            </div>
+            <div class="keyboard__key" data-char="0" data-shift-char=")" data-right-hand-position="5">
+              <div class="keyboard__key-text">)</div>
+              <div class="keyboard__key-text">0</div>
+            </div>
+            <div class="keyboard__key" data-char="-" data-shift-char="_" data-right-hand-position="4">
+              <div class="keyboard__key-text">_</div>
+              <div class="keyboard__key-text">-</div>
+            </div>
+            <div class="keyboard__key" data-char="=" data-shift-char="+" data-right-hand-position="3">
+              <div class="keyboard__key-text">+</div>
+              <div class="keyboard__key-text">=</div>
+            </div>
+            <div class="keyboard__key keyboard__key_backspace" data-backspace data-right-hand-position="2">
+              <svg class="keyboard__icon keyboard__icon_backspace" width="21" height="11">
+                <use xlink:href="#icon-backspace"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="keyboard__row">
+            <div class="keyboard__key keyboard__key_tab">
+              <svg class="keyboard__icon keyboard__icon_tab" width="21" height="11">
+                <use xlink:href="#icon-tab"></use>
+              </svg>
+            </div>
+            <div class="keyboard__key" data-char="й" data-shift-char="Й" data-left-hand-position="9">
+              <div class="keyboard__key-text">Й</div>
+            </div>
+            <div class="keyboard__key" data-char="ц" data-shift-char="Ц" data-left-hand-position="10">
+              <div class="keyboard__key-text">Ц</div>
+            </div>
+            <div class="keyboard__key" data-char="у" data-shift-char="У" data-left-hand-position="11">
+              <div class="keyboard__key-text">У</div>
+            </div>
+            <div class="keyboard__key" data-char="к" data-shift-char="К" data-left-hand-position="12">
+              <div class="keyboard__key-text">К</div>
+            </div>
+            <div class="keyboard__key" data-char="е" data-shift-char="Е" data-left-hand-position="13">
+              <div class="keyboard__key-text">Е</div>
+            </div>
+            <div class="keyboard__key" data-char="н" data-shift-char="Н" data-right-hand-position="16">
+              <div class="keyboard__key-text">Н</div>
+            </div>
+            <div class="keyboard__key" data-char="г" data-shift-char="Г" data-right-hand-position="15">
+              <div class="keyboard__key-text">Г</div>
+            </div>
+            <div class="keyboard__key" data-char="ш" data-shift-char="Ш" data-right-hand-position="14">
+              <div class="keyboard__key-text">Ш</div>
+            </div>
+            <div class="keyboard__key" data-char="щ" data-shift-char="Щ" data-right-hand-position="13">
+              <div class="keyboard__key-text">Щ</div>
+            </div>
+            <div class="keyboard__key" data-char="з" data-shift-char="З" data-right-hand-position="12">
+              <div class="keyboard__key-text">З</div>
+            </div>
+            <div class="keyboard__key" data-char="х" data-shift-char="Х" data-right-hand-position="11">
+              <div class="keyboard__key-text">Х</div>
+            </div>
+            <div class="keyboard__key" data-char="ъ" data-shift-char="Ъ" data-right-hand-position="10">
+              <div class="keyboard__key-text">Ъ</div>
+            </div>
+            <div class="keyboard__key keyboard__key_tall-enter" data-enter data-right-hand-position="9">
+              <svg class="keyboard__icon keyboard__icon_enter" width="21" height="16">
+                <use xlink:href="#icon-enter"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="keyboard__row">
+            <div class="keyboard__key keyboard__key_capslock" data-char="CapsLock">
+              <svg class="keyboard__icon keyboard__icon_capslock" width="16" height="22">
+                <use xlink:href="#icon-capslock"></use>
+              </svg>
+            </div>
+            <div class="keyboard__key" data-char="ф" data-shift-char="Ф" data-left-hand-position="14">
+              <div class="keyboard__key-text">Ф</div>
+            </div>
+            <div class="keyboard__key" data-char="ы" data-shift-char="Ы" data-left-hand-position="15">
+              <div class="keyboard__key-text">Ы</div>
+            </div>
+            <div class="keyboard__key" data-char="в" data-shift-char="В" data-left-hand-position="16">
+              <div class="keyboard__key-text">В</div>
+            </div>
+            <div class="keyboard__key" data-char="а" data-shift-char="А" data-left-hand-position="17">
+              <div class="keyboard__key-text">А</div>
+            </div>
+            <div class="keyboard__key" data-char="п" data-shift-char="П" data-left-hand-position="18">
+              <div class="keyboard__key-text">П</div>
+            </div>
+            <div class="keyboard__key" data-char="р" data-shift-char="Р" data-right-hand-position="23">
+              <div class="keyboard__key-text">Р</div>
+            </div>
+            <div class="keyboard__key" data-char="о" data-shift-char="О" data-right-hand-position="22">
+              <div class="keyboard__key-text">О</div>
+            </div>
+            <div class="keyboard__key" data-char="л" data-shift-char="Л" data-right-hand-position="21">
+              <div class="keyboard__key-text">Л</div>
+            </div>
+            <div class="keyboard__key" data-char="д" data-shift-char="Д" data-right-hand-position="20">
+              <div class="keyboard__key-text">Д</div>
+            </div>
+            <div class="keyboard__key" data-char="ж" data-shift-char="Ж" data-right-hand-position="19">
+              <div class="keyboard__key-text">Ж</div>
+            </div>
+            <div class="keyboard__key" data-char="э" data-shift-char="Э" data-right-hand-position="18">
+              <div class="keyboard__key-text">Э</div>
+            </div>
+            <div class="keyboard__key" data-right-hand-position="17">
+              <div class="keyboard__key-text">/</div>
+              <div class="keyboard__key-text">\</div>
+            </div>
+          </div>
+          <div class="keyboard__row">
+            <div class="keyboard__key keyboard__key_left-shift" data-shift="left" data-left-hand-position="20">
+              <svg class="keyboard__icon keyboard__icon_shift" width="16" height="16">
+                <use xlink:href="#icon-shift"></use>
+              </svg>
+            </div>
+            <div class="keyboard__key" data-char="я" data-shift-char="Я" data-left-hand-position="21">
+              <div class="keyboard__key-text">Я</div>
+            </div>
+            <div class="keyboard__key" data-char="ч" data-shift-char="Ч" data-left-hand-position="22">
+              <div class="keyboard__key-text">Ч</div>
+            </div>
+            <div class="keyboard__key" data-char="с" data-shift-char="С" data-left-hand-position="23">
+              <div class="keyboard__key-text">С</div>
+            </div>
+            <div class="keyboard__key" data-char="м" data-shift-char="М" data-left-hand-position="24">
+              <div class="keyboard__key-text">М</div>
+            </div>
+            <div class="keyboard__key" data-char="и" data-shift-char="И" data-left-hand-position="25">
+              <div class="keyboard__key-text">И</div>
+            </div>
+            <div class="keyboard__key" data-char="т" data-shift-char="Т" data-right-hand-position="29">
+              <div class="keyboard__key-text">Т</div>
+            </div>
+            <div class="keyboard__key" data-char="ь" data-shift-char="Ь" data-right-hand-position="28">
+              <div class="keyboard__key-text">Ь</div>
+            </div>
+            <div class="keyboard__key" data-char="б" data-shift-char="Б" data-right-hand-position="27">
+              <div class="keyboard__key-text">Б</div>
+            </div>
+            <div class="keyboard__key" data-char="ю" data-shift-char="Ю" data-right-hand-position="26">
+              <div class="keyboard__key-text">Ю</div>
+            </div>
+            <div class="keyboard__key" data-char="." data-shift-char="," data-right-hand-position="25">
+              <div class="keyboard__key-text">,</div>
+              <div class="keyboard__key-text">.</div>
+            </div>
+            <div class="keyboard__key keyboard__key_right-shift" data-shift="right" data-right-hand-position="24">
+              <svg class="keyboard__icon keyboard__icon_shift" width="16" height="16">
+                <use xlink:href="#icon-shift"></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="keyboard__permanent-keys">
+          <div class="keyboard__row">
+            <div class="keyboard__key keyboard__key_control">
+              <div class="keyboard__key-text">Control</div>
+            </div>
+            <div class="keyboard__key keyboard__key_alt">
+              <div class="keyboard__key-text">Alt</div>
+            </div>
+            <div class="keyboard__key keyboard__key_space" data-char=" " data-left-hand-position="26" data-right-hand-position="30"></div>
+            <div class="keyboard__key keyboard__key_alt">
+              <div class="keyboard__key-text">Alt</div>
+            </div>
+            <div class="keyboard__arrows">
+              <div class="keyboard__key keyboard__key_left-arrow">
+                <svg class="keyboard__icon keyboard__icon_arrow" width="6" height="7">
+                  <use xlink:href="#icon-key-arrow"></use>
+                </svg>
+              </div>
+              <div class="keyboard__key keyboard__key_top-arrow">
+                <svg class="keyboard__icon keyboard__icon_arrow" width="6" height="7">
+                  <use xlink:href="#icon-key-arrow"></use>
+                </svg>
+              </div>
+              <div class="keyboard__key keyboard__key_bottom-arrow">
+                <svg class="keyboard__icon keyboard__icon_arrow" width="6" height="7">
+                  <use xlink:href="#icon-key-arrow"></use>
+                </svg>
+              </div>
+              <div class="keyboard__key keyboard__key_right-arrow">
+                <svg class="keyboard__icon keyboard__icon_arrow" width="6" height="7">
+                  <use xlink:href="#icon-key-arrow"></use>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg class="keyboard__hand keyboard__hand_left">
+        <use xlink:href="#hand-left-1"></use>
+      </svg>
+      <svg class="keyboard__hand keyboard__hand_right">
+        <use xlink:href="#hand-right-1"></use>
+      </svg>
+    </div>
+
+    <!-- Диалог подсказки -->
+    <section class="hint-dialog hint-dialog_hidden">
+      <div class="hint-dialog__overlay" aria-hidden="true"></div>
+      <div class="hint-dialog__container" role="dialog" aria-labelledby="hint-dialog-title">
+        <h2 class="hint-dialog__title" id="hint-dialog-title">Подсказка</h2>
+        <p class="hint-dialog__message"></p>
+        <button class="button button_big hint-dialog__close-button" type="button" tabindex="0">Понятно</button>
+      </div>
+    </section>
+
+    <!-- Диалог паузы -->
+    <section class="pause-dialog pause-dialog_hidden">
+      <div class="pause-dialog__overlay" aria-hidden="true"></div>
+      <div class="pause-dialog__container" role="dialog" aria-labelledby="pause-dialog-title">
+        <h2 class="pause-dialog__title" id="pause-dialog-title">Пауза</h2>
+        <button class="pause-dialog__close-button" type="button" aria-label="Закрыть меню паузы"></button>
+        <form class="pause-dialog__options">
+          <div class="pause-dialog__option">
+            <label class="pause-dialog__option-name" for="keyboard-toggle">Показывать клавиатуру</label>
+            <button
+              class="toggle pause-dialog__toggle pause-dialog__toggle_keyboard"
+              role="switch"
+              aria-checked="false"
+              type="button"
+              id="keyboard-toggle">
+            </button>
+          </div>
+          <div class="pause-dialog__option">
+            <label class="pause-dialog__option-name" for="hands-toggle">Показывать руки</label>
+            <button
+              class="toggle pause-dialog__toggle pause-dialog__toggle_hands"
+              role="switch"
+              aria-checked="false"
+              type="button"
+              id="hands-toggle">
+            </button>
+          </div>
+          <div class="pause-dialog__option">
+            <label class="pause-dialog__option-name" for="keyboard-select-button">Клавиатура</label>
+            <button
+              class="button pause-dialog__keyboard-button"
+              type="button"
+              id="keyboard-select-button">Русская</button>
+          </div>
+          <button class="button button_big pause-dialog__submit-button" type="submit">Применить</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Диалог выбора клавиатуры -->
+    <section class="keyboard-select-dialog keyboard-select-dialog_hidden">
+      <div class="keyboard-select-dialog__overlay" aria-hidden="true"></div>
+      <div class="keyboard-select-dialog__container" role="dialog" aria-labelledby="keyboard-select-dialog-title">
+        <h2 class="keyboard-select-dialog__title" id="keyboard-select-dialog-title">Настройки клавиатуры</h2>
+        <button class="keyboard-select-dialog__close-button" type="button" aria-label="Закрыть настройки клавиатуры"></button>
+        <form class="keyboard-select-dialog__options">
+          <fieldset class="keyboard-select-dialog__option keyboard-select-dialog__option_os">
+            <legend class="keyboard-select-dialog__option-name">Твоя ОС</legend>
+            <ul class="keyboard-select-dialog__option-variants">
+              <li class="keyboard-select-dialog__option-variant">
+                <div class="os-radio">
+                  <input
+                    class="os-radio__input"
+                    type="radio"
+                    name="os"
+                    value="windows"
+                    id="os-radio-windows"
+                    checked>
+                  <label class="os-radio__label" for="os-radio-windows">
+                    <span class="os-radio__name">Windows или Linux</span>
+                    <svg class="os-radio__icon" width="44" height="44">
+                      <use xlink:href="#icon-windows"></use>
+                    </svg>
+                    <svg class="os-radio__icon" width="39" height="45">
+                      <use xlink:href="#icon-parrot"></use>
+                    </svg>
+                  </label>
+                </div>
+              </li>
+              <li class="keyboard-select-dialog__option-variant">
+                <div class="os-radio">
+                  <input
+                    class="os-radio__input"
+                    type="radio"
+                    name="os"
+                    value="macos"
+                    id="os-radio-macos">
+                  <label class="os-radio__label" for="os-radio-macos">
+                    <span class="os-radio__name">macOS</span>
+                    <svg class="os-radio__icon" width="38" height="45">
+                      <use xlink:href="#icon-apple"></use>
+                    </svg>
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </fieldset>
+          <fieldset class="keyboard-select-dialog__option keyboard-select-dialog__option_enter">
+            <legend class="keyboard-select-dialog__option-name">Формат</legend>
+            <ul class="keyboard-select-dialog__option-variants">
+              <li class="keyboard-select-dialog__option-variant">
+                <div class="enter-radio">
+                  <input
+                    class="enter-radio__input"
+                    type="radio"
+                    name="enter"
+                    value="ansi"
+                    id="enter-radio-ansi"
+                    checked>
+                  <label class="enter-radio__label" for="enter-radio-ansi">
+                    <svg class="enter-radio__icon" width="65" height="74">
+                      <use xlink:href="#icon-enter-long"></use>
+                    </svg>
+                    <span class="enter-radio__name">Длинный Enter</span>
+                  </label>
+                </div>
+              </li>
+              <li class="keyboard-select-dialog__option-variant">
+                <div class="enter-radio">
+                  <input
+                    class="enter-radio__input"
+                    type="radio"
+                    name="enter"
+                    value="iso"
+                    id="enter-radio-iso">
+                  <label class="enter-radio__label" for="enter-radio-iso">
+                    <svg class="enter-radio__icon" width="67" height="73">
+                      <use xlink:href="#icon-enter-tall"></use>
+                    </svg>
+                    <span class="enter-radio__name">Высокий Enter</span>
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </fieldset>
+          <fieldset class="keyboard-select-dialog__option keyboard-select-dialog__option_layout">
+            <legend class="keyboard-select-dialog__option-name">Раскладка</legend>
+            <ul class="keyboard-select-dialog__option-variants">
+              <li class="keyboard-select-dialog__option-variant">
+                <div class="layout-radio">
+                  <input
+                    class="layout-radio__input"
+                    type="radio"
+                    name="layout"
+                    value="rus"
+                    id="layout-radio-rus"
+                    checked>
+                  <label class="layout-radio__label" for="layout-radio-rus">
+                    <span class="layout-radio__name">Русская</span>
+                    <span class="layout-radio__description">Ё рядом с Enter</span>
+                  </label>
+                </div>
+              </li>
+              <li class="keyboard-select-dialog__option-variant">
+                <div class="layout-radio">
+                  <input
+                    class="layout-radio__input"
+                    type="radio"
+                    name="layout"
+                    value="rus-pc"
+                    id="layout-radio-rus-pc">
+                  <label class="layout-radio__label" for="layout-radio-rus-pc">
+                    <span class="layout-radio__name">Русская-ПК</span>
+                    <span class="layout-radio__description">Ё в левом верхнем углу</span>
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </fieldset>
+          <button class="button button_big keyboard-select-dialog__submit-button" type="submit">Применить</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Шаблон символа-клавиши -->
+  <template id="template-key-char">
+    <include src="source/modules/key-char/key-char.html"></include>
+  </template>
+
+  <!-- Шаблон контейнера с клавишами -->
+  <template id="template-key-box">
+    <include src="source/modules/key-box/key-box.html"></include>
+  </template>
+
+  <!-- Шаблон текстового символа -->
+  <template id="template-text-char">
+    <include src="source/modules/text-char/text-char.html"></include>
+  </template>
+
+  <!-- Шаблон строки с текстом -->
+  <template id="template-text-line">
+    <include src="source/modules/text-line/text-line.html"></include>
+  </template>
+
+  <!-- Шаблон контейнера с текстом -->
+  <template id="template-text-box">
+    <include src="source/modules/text-box/text-box.html"></include>
+  </template>
+
+  <!-- Шаблоны заменяемых клавиш клавиатуры -->
+  <template id="template-keyboard">
+    <include src="source/modules/keyboard/keyboard.html"></include>
+  </template>
+
+  <!-- Спрайт с руками -->
+  <div class="sprite" aria-hidden="true">
+    <include src="source/img/hands.svg"></include>
+  </div>
+
+  <!-- Спрайт с иконками -->
+  <div class="sprite" aria-hidden="true">
+    <include src="source/img/icons.svg"></include>
+  </div>
+
+  <script src="js/script.min.js"></script>
+</body>
+</html>

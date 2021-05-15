@@ -1,0 +1,46 @@
+@mixin speedometer-geometry($unit: 4px) {
+  padding-left: $unit * 6;
+
+  font-size: $unit * 3.5;
+  line-height: $unit * 3.5;
+
+  &__icon {
+    width: $unit * 3.5;
+    height: $unit * 3.5;
+  }
+
+  &__unit {
+    font-size: $unit * 2.5;
+    line-height: $unit * 2.5;
+  }
+}
+
+.speedometer {
+  @include speedometer-geometry(4px);
+
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    transform: translateY(-60%);
+  }
+
+  &__unit {
+    color: #B2B2B2;
+  }
+
+  @media (min-height: $height-breakpoint-1) {
+    @include speedometer-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include speedometer-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include speedometer-geometry(7px);
+  }
+}

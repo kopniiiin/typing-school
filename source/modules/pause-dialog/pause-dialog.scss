@@ -1,0 +1,39 @@
+@mixin pause-dialog-geometry($unit: 4px) {
+  @include dialog-geometry($unit);
+
+  font-weight: 400;
+
+  &__options {
+    display: grid;
+    row-gap: $unit * 2;
+  }
+
+  &__option {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-items: center;
+    column-gap: $unit * 4;
+  }
+
+  &__option-name {
+    cursor: pointer;
+  }
+}
+
+.pause-dialog {
+  @include pause-dialog-geometry(4px);
+  @include dialog("../img/pause.png");
+
+  @media (min-height: $height-breakpoint-1) {
+    @include pause-dialog-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include pause-dialog-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include pause-dialog-geometry(7px);
+  }
+}

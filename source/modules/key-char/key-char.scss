@@ -1,0 +1,124 @@
+@mixin key-char-geometry($unit: 4px) {
+  width: $unit * 16;
+  height: $unit * 16;
+  border-radius: $unit * 2;
+  padding-bottom: $unit * 2;
+
+  font-size: $unit * 6;
+  line-height: $unit * 6;
+
+  box-shadow: inset 0 $unit * -1 #D4CECE;
+
+  &_cursor {
+    &::before {
+      bottom: $unit * -3.5 + 1px;
+    }
+  }
+
+  &_correct,
+  &_typo {
+    .key-char__key {
+      height: $unit * 13;
+    }
+  }
+
+  &_correct {
+    box-shadow: inset 0 $unit * -1 #64A3D3;
+
+    .key-char__key {
+      box-shadow:
+        inset 0 $unit * -0.5 #64A3D3,
+        0 $unit * 0.5 $unit rgba(#000000, 0.1);
+    }
+  }
+
+  &_typo {
+    box-shadow: inset 0 $unit * -1 #CE6C6C;
+
+    .key-char__key {
+      box-shadow:
+        inset 0 $unit * -0.5 #CE6C6C,
+        0 $unit * 0.5 $unit rgba(#000000, 0.1);
+    }
+  }
+
+  &__key {
+    width: $unit * 14;
+    height: $unit * 13.5;
+    border-radius: $unit * 2;
+
+    box-shadow:
+      inset 0 $unit * -1 #D4CECE,
+      0 $unit * 0.5 $unit rgba(#000000, 0.1);
+  }
+}
+
+.key-char {
+  @include key-char-geometry(4px);
+
+  position: relative;
+
+  display: grid;
+  justify-items: center;
+  align-items: end;
+
+  background-color: #F2EFEF;
+  transition: color 0.4s, background-color 0.4s;
+
+  &_cursor {
+    &::before {
+      content: "";
+
+      position: absolute;
+      left: 0;
+
+      width: 100%;
+      height: 3px;
+      border-radius: 3px;
+
+      background-color: $color-blue;
+    }
+  }
+
+  &_correct {
+    color: #2882C6;
+
+    background-color: #9BCCFD;
+
+    .key-char__key {
+      background-color: #DBEDFF;
+    }
+  }
+
+  &_typo {
+    color: #CE6C6C;
+
+    background-color: #FF969D;
+
+    .key-char__key {
+      background-color: #FFC7CB;
+    }
+  }
+
+  &__key {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+
+    background-color: #FCFCFC;
+    transition: background-color 0.4s;
+  }
+
+  @media (min-height: $height-breakpoint-1) {
+    @include key-char-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include key-char-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include key-char-geometry(7px);
+  }
+}

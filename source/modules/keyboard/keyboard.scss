@@ -1,0 +1,365 @@
+@mixin keyboard-geometry($unit: 4px) {
+  padding-bottom: $unit * 10;
+
+  font-size: $unit * 2.5;
+  line-height: $unit * 2.5;
+
+  &__keys {
+    row-gap: $unit * 1.5;
+
+    border-radius: $unit * 2;
+    padding: $unit * 1.5;
+    padding-bottom: $unit * 2.5;
+
+    box-shadow: inset 0 $unit * -1 #C1C4CF;
+  }
+
+  &__replaceable-keys {
+    row-gap: $unit * 1.5;
+  }
+
+  &__row {
+    column-gap: $unit * 1.5;
+  }
+
+  &__arrows {
+    column-gap: $unit * 1.5;
+  }
+
+  &__key {
+    width: $unit * 9;
+    height: $unit * 9;
+    border-radius: $unit;
+    padding: $unit $unit * 1.5;
+
+    box-shadow: inset 0 $unit * -0.5 #E0E1E6;
+
+    &_required {
+      box-shadow: inset 0 $unit * -0.5 #3AA1EF;
+    }
+
+    &_correct,
+    &_wrong {
+      height: $unit * 8.5;
+      padding-bottom: $unit * 0.5;
+
+      box-shadow: none;
+    }
+
+    &_backspace,
+    &_tab,
+    &_enter,
+    &_tall-enter,
+    &_capslock,
+    &_left-shift,
+    &_short-left-shift,
+    &_right-shift,
+    &_control,
+    &_alt {
+      padding-bottom: $unit * 1.5;
+
+      &.keyboard__key_correct,
+      &.keyboard__key_wrong {
+        padding-bottom: $unit;
+      }
+    }
+
+    &_backspace,
+    &_tab,
+    &_control,
+    &_alt {
+      width: $unit * 15;
+    }
+
+    &_left-shift,
+    &_right-shift {
+      width: $unit * 22.5;
+    }
+
+    &_control,
+    &_alt {
+      font-size: $unit * 1.75;
+      line-height: $unit * 1.75;
+    }
+
+    &_enter {
+      width: $unit * 17.5;
+    }
+
+    &_tall-enter {
+      border-bottom-right-radius: 0;
+
+      &::before {
+        width: $unit * 7;
+        height: $unit * 10.5 + 1px;
+        border-bottom-right-radius: $unit;
+        border-bottom-left-radius: $unit;
+
+        box-shadow: inset 0 $unit * -0.5 #E0E1E6;
+      }
+
+      &::after {
+        width: $unit * 7 - 2px;
+        height: $unit * 9;
+        border-top-right-radius: $unit;
+      }
+    }
+
+    &_capslock {
+      width: $unit * 17;
+    }
+
+    &_short-left-shift {
+      width: $unit * 12;
+    }
+
+    &_space {
+      width: $unit * 70.5;
+    }
+
+    &_top-arrow {
+      height: $unit * 4.5 + 1px;
+      border-bottom-right-radius: $unit * 0.5;
+      border-bottom-left-radius: $unit * 0.5;
+    }
+
+    &_bottom-arrow {
+      height: $unit * 4.5;
+      border-top-right-radius: $unit * 0.5;
+      border-top-left-radius: $unit * 0.5;
+    }
+  }
+
+  &__icon {
+    &_backspace,
+    &_tab {
+      width: $unit * 3.5;
+      height: $unit * 1.75;
+    }
+
+    &_enter {
+      z-index: 1;
+
+      width: $unit * 3.5;
+      height: $unit * 2.5;
+    }
+
+    &_capslock {
+      width: $unit * 2.5;
+      height: $unit * 3.5;
+    }
+
+    &_shift {
+      width: $unit * 2.5;
+      height: $unit * 2.5;
+    }
+
+    &_arrow {
+      width: $unit * 1;
+      height: $unit * 1;
+    }
+  }
+
+  &__hand {
+    top: $unit * 23;
+
+    width: $unit * 80;
+    height: $unit * 84;
+
+    &_left {
+      left: $unit * 8;
+    }
+
+    &_right {
+      left: $unit * 76;
+    }
+  }
+}
+
+.keyboard {
+  @include keyboard-geometry(4px);
+
+  position: relative;
+
+  font-weight: 400;
+  color: #9D9FA2;
+
+  overflow: hidden;
+
+  &_no-hands {
+    .keyboard__hand {
+      display: none;
+    }
+  }
+
+  &__keys {
+    display: grid;
+
+    background-image: linear-gradient(
+      to bottom,
+      #EFEFF2 0%,
+      #DADBE1 100%
+    );
+  }
+
+  &__replaceable-keys {
+    display: grid;
+  }
+
+  &__row {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: end;
+  }
+
+  &__arrows {
+    display: grid;
+    grid-template-areas:
+      "left-arrow top-arrow right-arrow"
+      "left-arrow bottom-arrow right-arrow";
+  }
+
+  &__key {
+    display: grid;
+    justify-items: center;
+    align-content: space-around;
+
+    border: 1px solid #7C7F87;
+
+    background-image: linear-gradient(
+      to bottom,
+      #EAEBED 0%,
+      #FFFFFF 100%
+    );
+
+    &_required,
+    &_correct,
+    &_wrong {
+      color: #ffffff;
+
+      background-image: none;
+    }
+
+    &_required {
+      background-color: #85CAFF;
+    }
+
+    &_correct {
+      background-color: #85CAFF;
+    }
+
+    &_wrong {
+      background-color: #FFC7CB;
+    }
+
+    &_backspace,
+    &_tab,
+    &_enter,
+    &_tall-enter,
+    &_capslock,
+    &_left-shift,
+    &_short-left-shift,
+    &_right-shift,
+    &_control,
+    &_alt {
+      align-content: end;
+    }
+
+    &_tab,
+    &_capslock,
+    &_left-shift,
+    &_short-left-shift,
+    &_control,
+    &_alt {
+      justify-items: start;
+    }
+
+    &_backspace,
+    &_enter,
+    &_tall-enter,
+    &_right-shift {
+      justify-items: end;
+    }
+
+    &_tall-enter {
+      position: relative;
+
+      &::before,
+      &::after {
+        content: "";
+
+        position: absolute;
+      }
+
+      &::before {
+        top: 100%;
+        right: -1px;
+
+        border: 1px solid #7C7F87;
+        border-top: none;
+
+        background-color: #FFFFFF;
+      }
+
+      &::after {
+        top: 0;
+        right: 0;
+
+        background-image: linear-gradient(
+          to bottom,
+          #EAEBED 0%,
+          #FFFFFF 100%
+        );
+      }
+    }
+
+    &_top-arrow {
+      grid-area: top-arrow;
+
+      margin-bottom: -1px;
+
+      .keyboard__icon_arrow {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &_right-arrow {
+      grid-area: right-arrow;
+    }
+
+    &_bottom-arrow {
+      grid-area: bottom-arrow;
+
+      .keyboard__icon_arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    &_left-arrow {
+      grid-area: left-arrow;
+
+      .keyboard__icon_arrow {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__hand {
+    position: absolute;
+
+    opacity: 0.6;
+  }
+
+  @media (min-height: $height-breakpoint-1) {
+    @include keyboard-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include keyboard-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include keyboard-geometry(7px);
+  }
+}

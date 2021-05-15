@@ -1,0 +1,26 @@
+@mixin key-box-geometry($unit: 4px) {
+  column-gap: $unit * 3;
+
+  padding-bottom: $unit * 3;
+}
+
+.key-box {
+  @include key-box-geometry(4px);
+
+  display: grid;
+  grid-auto-flow: column;
+
+  border-bottom: 1px solid $color-gray;
+
+  @media (min-height: $height-breakpoint-1) {
+    @include key-box-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include key-box-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include key-box-geometry(7px);
+  }
+}

@@ -1,0 +1,25 @@
+@mixin text-box-geometry($unit: 4px) {
+  height: $unit * 36;
+}
+
+.text-box {
+  @include text-box-geometry(4px);
+
+  overflow: hidden;
+
+  &__text-line {
+    transition: transform 0.4s;
+  }
+
+  @media (min-height: $height-breakpoint-1) {
+    @include text-box-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include text-box-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include text-box-geometry(7px);
+  }
+}

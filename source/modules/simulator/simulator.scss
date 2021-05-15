@@ -1,0 +1,125 @@
+@mixin simulator($unit: 4px) {
+  display: grid;
+  grid-template-rows: auto $unit * 10 auto $unit * 10 auto;
+  grid-template-areas:
+    "bar"
+    "."
+    "characters"
+    "hint"
+    "keyboard";
+  align-content: space-between;
+  justify-items: center;
+
+  height: 100vh;
+  min-height: 600px;
+
+  &_no-keyboard {
+    padding-bottom: $unit * 10;
+
+    .simulator__keyboard {
+      display: none;
+    }
+  }
+
+  &__title {
+    @include visually-hidden();
+  }
+
+  &__top-bar {
+    justify-self: stretch;
+    display: grid;
+    grid-template-columns: minmax(auto, $unit * 260);
+    justify-content: center;
+
+    border-bottom: 1px solid $color-gray;
+
+    background-image: linear-gradient(
+      to bottom,
+      $color-white 0%,
+      rgba($color-gray, 0.4) 100%
+    );
+  }
+
+  &__bar-container {
+    display: grid;
+    grid-template-columns: $unit * 60 $unit * 72 $unit * 60;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: $unit * 2;
+
+    padding-top: $unit * 3.5;
+    padding-right: $unit * 4;
+    padding-bottom: $unit * 3.5;
+    padding-left: $unit * 4;
+  }
+
+  &__links {
+    display: grid;
+    justify-items: start;
+  }
+
+  &__meters {
+    display: grid;
+    grid-template-columns: repeat(2, $unit * 30);
+    justify-content: space-between;
+
+    border: 1px solid $color-gray;
+    border-radius: $unit * 2;
+    padding-top: $unit * 2;
+    padding-right: $unit * 4;
+    padding-bottom: $unit * 1.5;
+    padding-left: $unit * 4;
+
+    box-shadow: 0 $unit $unit * 4 rgba(#000000, 0.1);
+    transition: opacity 0.4s;
+
+    &_hidden {
+      opacity: 0;
+    }
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: end;
+    column-gap: $unit * 1.5;
+  }
+
+  &__char-container {
+    grid-area: characters;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: $unit * 36;
+
+    transition: opacity 0.4s;
+
+    &_switch {
+      opacity: 0;
+    }
+  }
+
+  &__hint-container {
+    grid-area: hint;
+  }
+
+  &__keyboard {
+    grid-area: keyboard;
+  }
+}
+
+.simulator {
+  @include simulator(4px);
+
+  @media (min-height: $height-breakpoint-1) {
+    @include simulator(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include simulator(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include simulator(7px);
+  }
+}

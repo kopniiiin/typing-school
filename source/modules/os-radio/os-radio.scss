@@ -1,0 +1,100 @@
+@mixin os-radio-geometry ($unit: 4px) {
+  &__label {
+    padding-bottom: $unit * 4;
+  }
+
+  &__icon {
+    width: $unit * 9;
+    height: $unit * 9;
+  }
+}
+
+.os-radio {
+  @include os-radio-geometry(4px);
+
+  &__input {
+    @include visually-hidden();
+
+    &:focus {
+      + .os-radio__label {
+        color: rgba(#000000, 0.8);
+      }
+    }
+
+    &:checked {
+      + .os-radio__label {
+        color: #4CA6FF;
+
+        &::before {
+          background-color: #4CA6FF;
+        }
+
+        &:hover {
+          color: $color-blue;
+
+          &::before {
+            background-color: $color-blue;
+          }
+        }
+      }
+
+      &:focus {
+        + .os-radio__label {
+          color: $color-blue;
+
+          &::before {
+            background-color: $color-blue;
+          }
+        }
+      }
+    }
+  }
+
+  &__label {
+    position: relative;
+
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-evenly;
+
+    color: rgba(#000000, 0.6);
+
+    cursor: pointer;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+
+      width: 100%;
+      height: 3px;
+      border-radius: 3px;
+    }
+
+    &:hover {
+      color: rgba(#000000, 0.8);
+    }
+  }
+
+  &__name {
+    @include visually-hidden();
+  }
+
+  &__icon {
+    fill: currentColor;
+  }
+
+  @media (min-height: $height-breakpoint-1) {
+    @include os-radio-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include os-radio-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include os-radio-geometry(7px);
+  }
+}

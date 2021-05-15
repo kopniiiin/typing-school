@@ -1,0 +1,77 @@
+@mixin toggle-geometry($unit: 4px) {
+  width: $unit * 10;
+  height: $unit * 6;
+  border-radius: $unit * 6;
+
+  &::before {
+    left: $unit * 0.5;
+
+    width: $unit * 5;
+    height: $unit * 5;
+
+    box-shadow: 0 0 $unit * 0.5 rgba(#000000, 0.2);
+  }
+
+  &[aria-checked=true] {
+    &::before {
+      transform: translate($unit * 3.75, -50%);
+    }
+  }
+}
+
+.toggle {
+  @include toggle-geometry(4px);
+
+  position: relative;
+
+  display: block;
+  border: none;
+
+  background-color: #ECEAEA;
+  box-shadow: inset 0 0 0 1px #E0E0E0;
+  outline: none;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+
+    border-radius: 50%;
+
+    background-color: $color-white;
+    transform: translateY(-50%);
+    transition: transform 0.4s;
+  }
+
+  &[aria-checked=true] {
+    background-color: $color-green;
+    box-shadow: none;
+  }
+
+  &:hover,
+  &:focus {
+    &:not(:disabled) {
+      background-color: #4CA6FF;
+      box-shadow: none;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: auto;
+  }
+
+  @media (min-height: $height-breakpoint-1) {
+    @include toggle-geometry(5px);
+  }
+
+  @media (min-height: $height-breakpoint-2) {
+    @include toggle-geometry(6px);
+  }
+
+  @media (min-height: $height-breakpoint-3) {
+    @include toggle-geometry(7px);
+  }
+}
